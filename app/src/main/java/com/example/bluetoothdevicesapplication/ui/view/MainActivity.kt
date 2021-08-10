@@ -1,7 +1,8 @@
-package com.example.bluetoothdevicesapplication
+package com.example.bluetoothdevicesapplication.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.bluetoothdevicesapplication.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
