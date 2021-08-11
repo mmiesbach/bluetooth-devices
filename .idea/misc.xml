@@ -3,9 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/q476839/AndroidStudioProjects/BluetoothDevicesApplication/app/src/main/res/layout/activity_main.xml" value="0.1897644927536232" />
-        <entry key="..\:/Users/q476839/AndroidStudioProjects/BluetoothDevicesApplication/app/src/main/res/layout/detail_fragment.xml" value="0.1897644927536232" />
-        <entry key="..\:/Users/q476839/AndroidStudioProjects/BluetoothDevicesApplication/app/src/main/res/layout/devices_fragment.xml" value="0.1897644927536232" />
+        <entry key="..\:/Users/Markus/StudioProjects/bluetooth-devices/app/src/main/res/layout/devices_fragment.xml" value="0.12635869565217392" />
       </map>
     </option>
   </component>

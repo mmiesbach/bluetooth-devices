@@ -6,6 +6,7 @@
     tools:context=".ui.view.DevicesFragment">
 
     <TextView
+        android:id="@+id/textViewDevices"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Devices Fragment" />

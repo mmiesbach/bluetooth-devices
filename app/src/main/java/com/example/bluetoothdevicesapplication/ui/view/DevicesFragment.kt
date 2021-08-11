@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.bluetoothdevicesapplication.R
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
+import kotlinx.android.synthetic.main.devices_fragment.view.*
 
 class DevicesFragment : Fragment() {
 
@@ -21,7 +23,10 @@ class DevicesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.devices_fragment, container, false)
+        val view = inflater.inflate(R.layout.devices_fragment, container, false)
+        view.textViewDevices.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_devicesFragment_to_detailFragment) }
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
