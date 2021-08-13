@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class DevicesViewModel(application: Application) : AndroidViewModel(application) {
-    // TODO: Implement the ViewModel
     private val _pairedDevices = MutableLiveData<List<BluetoothDevice>>()
     val pairedDevices : LiveData<List<BluetoothDevice>>
         get() = _pairedDevices
