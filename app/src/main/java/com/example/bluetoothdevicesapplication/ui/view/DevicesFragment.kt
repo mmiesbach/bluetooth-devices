@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bluetoothdevicesapplication.R
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
 import kotlinx.android.synthetic.main.devices_fragment.*
-import kotlinx.android.synthetic.main.devices_fragment.view.*
 
 class DevicesFragment : Fragment() {
 
