@@ -1,7 +1,32 @@
 package com.example.bluetoothdevicesapplication.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
-class DevicesViewModel : ViewModel() {
+class DevicesViewModel(application: Application) : AndroidViewModel(application) {
     // TODO: Implement the ViewModel
+    private val _pairedDevices = MutableLiveData<List<BluetoothDevice>>()
+    val pairedDevices : LiveData<List<BluetoothDevice>>
+        get() = _pairedDevices
+
+    private val bluetoothManager = application.applicationContext.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    private val bluetoothAdapter = bluetoothManager.adapter
+
+    init {
+        getPairedDevices()
+    }
+
+    fun getPairedDevices() {
+        _pairedDevices.value = bluetoothAdapter.bondedDevices.toList()
+    }
+
 }
