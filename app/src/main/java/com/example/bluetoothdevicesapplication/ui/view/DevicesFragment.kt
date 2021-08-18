@@ -49,8 +49,8 @@ class DevicesFragment : Fragment() {
 
         broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, p1: Intent?) {
-                    viewModel.getPairedDevices()
-                    recyclerView.adapter?.notifyDataSetChanged()
+                    if(viewModel.updatePairedDevices())
+                        recyclerView.adapter?.notifyDataSetChanged()
             }
         }
 
@@ -58,8 +58,8 @@ class DevicesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getPairedDevices()
-        recyclerView.adapter?.notifyDataSetChanged()
+        if(viewModel.updatePairedDevices())
+            recyclerView.adapter?.notifyDataSetChanged()
         activity?.registerReceiver(broadcastReceiver, intentFilter)
     }
 

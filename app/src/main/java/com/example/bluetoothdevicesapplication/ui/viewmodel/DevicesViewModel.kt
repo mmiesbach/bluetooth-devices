@@ -17,11 +17,13 @@ class DevicesViewModel(application: Application) : AndroidViewModel(application)
     private val bluetoothAdapter = bluetoothManager.adapter
 
     init {
-        getPairedDevices()
+        updatePairedDevices()
     }
 
-    fun getPairedDevices() {
+    fun updatePairedDevices(): Boolean {
+        val oldList = _pairedDevices.value
         _pairedDevices.value = bluetoothAdapter.bondedDevices.toList()
+        return !_pairedDevices.value!!.equals(oldList)
     }
 
 }
