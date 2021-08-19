@@ -13,7 +13,7 @@ class DevicesViewModel(application: Application) : AndroidViewModel(application)
     val pairedDevices : LiveData<List<BluetoothDevice>>
         get() = _pairedDevices
 
-    private val bluetoothManager = application.applicationContext.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    private val bluetoothManager = application.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     private val bluetoothAdapter = bluetoothManager.adapter
 
     init {

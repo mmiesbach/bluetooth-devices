@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bluetoothdevicesapplication.R
 import kotlinx.android.synthetic.main.list_item.view.*
@@ -39,6 +40,7 @@ class DevicesRecyclerViewAdapter(private val pairedDevices: List<BluetoothDevice
 
         val textView : TextView
         val connectedCircle : ImageView
+        private val currentView = view
 
         init {
             view.setOnClickListener(this)
@@ -47,8 +49,8 @@ class DevicesRecyclerViewAdapter(private val pairedDevices: List<BluetoothDevice
         }
 
         override fun onClick(p0: View?) {
-            TODO("Not yet implemented - Navigate to Details Page")
-
+            val action = DevicesFragmentDirections.actionDevicesFragmentToDetailFragment(pairedDevices[adapterPosition].name, pairedDevices[adapterPosition].address)
+            Navigation.findNavController(currentView).navigate(action)
         }
 
     }

@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.DetailFragment">
+    tools:context=".ui.view.DetailFragment"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Detail Fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Device Name:"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="selected device name"
+        android:id="@+id/textViewDeviceName"
+        android:textSize="15sp"
+        android:paddingStart="15dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mac Address:"
+        android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="selected device mac address"
+        android:id="@+id/textViewMacAddress"
+        android:textSize="15sp"
+        android:paddingStart="15dp"/>
 
-</FrameLayout>
+</LinearLayout>
