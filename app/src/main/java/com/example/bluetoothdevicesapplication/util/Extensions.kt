@@ -1,8 +1,11 @@
 package com.example.bluetoothdevicesapplication.util
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.bluetoothdevicesapplication.R
 
-fun Activity.navController(): NavController = this.findNavController(R.id.nav_controller_view_tag)
+fun AppCompatActivity.navController(): NavController {
+    val navHostFragment = this.supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    return navHostFragment.navController
+}

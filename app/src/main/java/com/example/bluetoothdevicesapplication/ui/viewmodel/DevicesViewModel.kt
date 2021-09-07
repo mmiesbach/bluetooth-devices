@@ -23,7 +23,7 @@ class DevicesViewModel(application: Application) : AndroidViewModel(application)
     fun updatePairedDevices(): Boolean {
         val oldList = _pairedDevices.value
         _pairedDevices.value = bluetoothAdapter.bondedDevices.toList()
-        return !_pairedDevices.value!!.equals(oldList)
+        return _pairedDevices.value!! != oldList
     }
 
 }
