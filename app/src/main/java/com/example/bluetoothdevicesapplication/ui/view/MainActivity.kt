@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = navController()
-
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController)
     }
