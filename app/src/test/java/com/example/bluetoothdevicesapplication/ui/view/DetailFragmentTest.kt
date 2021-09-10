@@ -1,11 +1,11 @@
-package com.example.bluetoothdevicesapplication
+package com.example.bluetoothdevicesapplication.ui.view
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
-import com.example.bluetoothdevicesapplication.ui.view.DetailFragment
+import com.example.bluetoothdevicesapplication.R
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
