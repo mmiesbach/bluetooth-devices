@@ -1,5 +1,6 @@
 package com.example.bluetoothdevicesapplication.ui.view
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
@@ -17,7 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bluetoothdevicesapplication.R
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
 import kotlinx.android.synthetic.main.devices_fragment.*
+import androidx.lifecycle.ViewModelProviders
+import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModelFactory
+import org.jetbrains.annotations.TestOnly
 
+@SuppressLint("NotifyDataSetChanged")
 class DevicesFragment : Fragment() {
 
     private lateinit var viewModel: DevicesViewModel
@@ -40,7 +45,9 @@ class DevicesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DevicesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,
+            activity?.let { DevicesViewModelFactory(it.application) }).get(DevicesViewModel::class.java)
+
         viewModel.pairedDevices.observe(viewLifecycleOwner, {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = DevicesRecyclerViewAdapter(it)
@@ -66,6 +73,11 @@ class DevicesFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         activity?.unregisterReceiver(broadcastReceiver)
+    }
+
+    @TestOnly
+    fun setTextViewModel(testViewModel: DevicesViewModel){
+        viewModel = testViewModel
     }
 
 }
