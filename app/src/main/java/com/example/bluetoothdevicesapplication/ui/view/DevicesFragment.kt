@@ -1,28 +1,36 @@
 package com.example.bluetoothdevicesapplication.ui.view
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bluetoothdevicesapplication.R
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
 import kotlinx.android.synthetic.main.devices_fragment.*
+import androidx.lifecycle.ViewModelProviders
+import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModelFactory
 
+@SuppressLint("NotifyDataSetChanged")
 class DevicesFragment : Fragment() {
 
-    private lateinit var viewModel: DevicesViewModel
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    lateinit var viewModel: DevicesViewModel
+
     private lateinit var broadcastReceiver: BroadcastReceiver
     private val intentFilter = IntentFilter()
+
+    lateinit var viewModelFactory: DevicesViewModelFactory
 
     init {
         intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
@@ -38,9 +46,15 @@ class DevicesFragment : Fragment() {
         return inflater.inflate(R.layout.devices_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DevicesViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(this::viewModelFactory.isInitialized && activity != null){
+            viewModelFactory = DevicesViewModelFactory(requireActivity().application)
+        }
+        viewModel = ViewModelProviders.of(this,
+            activity?.let { DevicesViewModelFactory(it.application) }).get(DevicesViewModel::class.java)
+
         viewModel.pairedDevices.observe(viewLifecycleOwner, {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = DevicesRecyclerViewAdapter(it)
@@ -49,11 +63,10 @@ class DevicesFragment : Fragment() {
 
         broadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, p1: Intent?) {
-                    if(viewModel.updatePairedDevices())
-                        recyclerView.adapter?.notifyDataSetChanged()
+                if(viewModel.updatePairedDevices())
+                    recyclerView.adapter?.notifyDataSetChanged()
             }
         }
-
     }
 
     override fun onResume() {
@@ -67,5 +80,4 @@ class DevicesFragment : Fragment() {
         super.onPause()
         activity?.unregisterReceiver(broadcastReceiver)
     }
-
 }
