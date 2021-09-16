@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,14 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bluetoothdevicesapplication.R
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
 import kotlinx.android.synthetic.main.devices_fragment.*
 import androidx.lifecycle.ViewModelProviders
 import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModelFactory
-import org.jetbrains.annotations.TestOnly
 
 @SuppressLint("NotifyDataSetChanged")
 class DevicesFragment : Fragment() {
@@ -33,7 +30,6 @@ class DevicesFragment : Fragment() {
     private lateinit var broadcastReceiver: BroadcastReceiver
     private val intentFilter = IntentFilter()
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     lateinit var viewModelFactory: DevicesViewModelFactory
 
     init {

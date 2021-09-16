@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import org.junit.Before
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import com.example.bluetoothdevicesapplication.ui.viewmodel.DevicesViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -18,8 +17,6 @@ import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 import org.robolectric.annotation.Config
-import java.util.*
-
 
 @RunWith(
     RobolectricTestRunner::class)
